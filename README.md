@@ -19,5 +19,14 @@ To analyze webpack bundle:
 $ yarn analyze
 ```
 
-Current build statistics:
-![Image of Stats](statistics/build-statistics.png)
+Current build statistics with tree shaking:
+![Image of Stats](statistics/with-treeshaking.png)
+
+Current bundle analysis with tree shaking:
+![Image of Stats](statistics/analyze-with-treeshaking.png)
+
+Build statistics without tree shaking:
+![Image of Stats](statistics/without-treeshaking.png)
+
+Current bundle analysis without tree shaking:
+![Image of Stats](statistics/analzye-without-treeshaking.png)

@@ -9,7 +9,7 @@
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "file:./react-scripts",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "source-map-explorer": "^1.5.0"
@@ -35,6 +35,18 @@
     "test": "react-scripts test --env=jsdom --watch",
     "eject": "react-scripts eject",
     "prettier": "prettier --write --single-quote --trailing-comma=none \"src/**/*.js\"",
-    "analyze": "source-map-explorer build/static/js/main.*"
+    "analyze": "source-map-explorer build/static/js/vendors.*"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">0.25%",
+      "not op_mini all",
+      "ie 11"
+    ]
   }
 }
