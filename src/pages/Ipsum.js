@@ -14,7 +14,7 @@ type State = {
   newStage: Stage
 };
 
-class IpsumPage extends React.Component<RouteComponentProps<any>, State> {
+class IpsumPage extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {

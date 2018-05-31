@@ -11,7 +11,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import { baseName } from './routes';
-import store from './redux/store';
 
 const sagaMiddleware = createSagaMiddleware();
 
