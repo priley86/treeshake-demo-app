@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { EmptyState } from '../components/EmptyState/EmptyState';
 
-class DolorPage extends React.Component<RouteComponentProps<any>, {}> {
+class DolorPage extends React.Component {
   render() {
     return (
       <div className="container-fluid container-pf-nav-pf-vertical">
@@ -12,4 +11,4 @@ class DolorPage extends React.Component<RouteComponentProps<any>, {}> {
   }
 }
 
-export default withRouter(DolorPage);
+export default DolorPage;

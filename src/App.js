@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { Routes } from './Routes';
+import { routes } from './routes';
 import { MastHead } from './components/Nav/MastHead';
 import { VerticalNav } from 'patternfly-react';
 // import { VerticalNav } from './components/Nav/VerticalNav';
@@ -16,6 +17,14 @@ type Props = {
 type State = {};
 
 class App extends React.Component<Props, State> {
+  constructor() {
+    super();
+
+    this.menu = routes();
+    this.state = {
+      aboutShown: false
+    };
+  }
   handleNavClick = (event: Event) => {
     event.preventDefault();
     let target = (event.currentTarget: any);
@@ -23,6 +32,40 @@ class App extends React.Component<Props, State> {
       let href = target.getAttribute('href');
       this.props.history.push(href);
     }
+  };
+
+  renderContent = () => {
+    const { location } = this.props;
+    
+    const activeItem = this.menu.find(item => location.pathname === item.to);
+
+    return this.menu.map((item, index) => {
+      return (
+        <Route key={index} path={item.to} component={item.component}/>
+      );
+    });
+  }
+
+  navigateTo = (path) => {
+    const { history } = this.props;
+    history.push(path);
+  }
+  renderMenuItems = () => {
+    const { location } = this.props;
+    
+    const activeItem = this.menu.find(item => location.pathname === item.to);
+    
+    return this.menu.map(item => {
+      return (
+        <VerticalNav.Item
+          key={item.to}
+          title={item.title}
+          iconClass={item.iconClass}
+          active={item === activeItem || (!activeItem && item.redirect)}
+          onClick={() => this.navigateTo(item.to)}
+        />
+      );
+    });
   };
 
   render() {
@@ -33,7 +76,9 @@ class App extends React.Component<Props, State> {
             <VerticalNav.Brand />
             />
           </VerticalNav.Masthead>
+          {this.renderMenuItems()}
         </VerticalNav>
+        <div className="container-pf-nav-pf-vertical">{this.renderContent()}</div>
       </div>
     );
   }
