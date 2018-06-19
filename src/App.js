@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Redirect, withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
 import { routes } from './routes';
-import { VerticalNav } from 'patternfly-react';
+import { VerticalNav, Dropdown, Icon, MenuItem } from 'patternfly-react';
 import './css/App.css';
 
 class App extends React.Component {
@@ -90,7 +90,29 @@ class App extends React.Component {
         }}
       >
         <VerticalNav persistentSecondary={false}>
-          <VerticalNav.Masthead title="PatternFly React Demo App" />
+          <VerticalNav.Masthead>
+            <VerticalNav.Brand titleImg="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.51.0/img/brand-alt.svg" iconImg="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.51.0/img/logo-alt.svg"/>
+            <VerticalNav.IconBar>
+              <Dropdown componentClass="li" id="help">
+                <Dropdown.Toggle useAnchor className="nav-item-iconic">
+                  <Icon type="pf" name="help" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem>Help</MenuItem>
+                  <MenuItem>About</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+              <Dropdown componentClass="li" id="user">
+                <Dropdown.Toggle useAnchor className="nav-item-iconic">
+                  <Icon type="pf" name="user" /> Brian Johnson
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <MenuItem>Preferences</MenuItem>
+                  <MenuItem>Logout</MenuItem>
+                </Dropdown.Menu>
+              </Dropdown>
+            </VerticalNav.IconBar>
+          </VerticalNav.Masthead>
           {this.renderMenuItems()}
         </VerticalNav>
         {/* default route to /ipsum */}
