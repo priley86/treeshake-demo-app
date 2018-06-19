@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { Grid } from 'patternfly-react';
 import { EmptyState } from '../components/EmptyState/EmptyState';
 
 class OrbisPage extends React.Component {
   render() {
     return (
-      <div className="container-fluid container-pf-nav-pf-vertical">
+      <Grid fluid className="container-pf-nav-pf-vertical">
         <EmptyState title="Orbis Page" />
-      </div>
+      </Grid>
     );
   }
 }

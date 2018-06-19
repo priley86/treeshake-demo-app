@@ -1,29 +1,15 @@
 import * as React from 'react';
-import { withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { routes } from './routes';
-import { MastHead } from './components/Nav/MastHead';
 import { VerticalNav } from 'patternfly-react';
-// import { VerticalNav } from './components/Nav/VerticalNav';
-import { Credentials } from './models/credentials';
 import './css/App.css';
 
-type Props = {
-  history: Array<string>,
-  credentials: Credentials
-};
-
-type State = {};
-
-class App extends React.Component<Props, State> {
+class App extends React.Component {
   constructor() {
     super();
 
     this.menu = routes();
-    this.state = {
-      aboutShown: false
-    };
   }
   handleNavClick = (event: Event) => {
     event.preventDefault();
@@ -36,58 +22,83 @@ class App extends React.Component<Props, State> {
 
   renderContent = () => {
     const { location } = this.props;
-    
-    const activeItem = this.menu.find(item => location.pathname === item.to);
-
     return this.menu.map((item, index) => {
       return (
-        <Route key={index} path={item.to} component={item.component}/>
+        <React.Fragment>
+          <Route key={index} exact path={item.to} component={item.component} />
+          {item.subItems &&
+            item.subItems.map((secondaryItem, subIndex) => {
+              return (
+                <Route
+                  key={subIndex}
+                  exact
+                  path={secondaryItem.to}
+                  component={secondaryItem.component}
+                />
+              );
+            })}
+        </React.Fragment>
       );
     });
-  }
+  };
 
-  navigateTo = (path) => {
+  navigateTo = path => {
     const { history } = this.props;
     history.push(path);
-  }
+  };
+
   renderMenuItems = () => {
     const { location } = this.props;
-    
-    const activeItem = this.menu.find(item => location.pathname === item.to);
-    
+    const activeItem = this.menu.find(
+      item => location.pathname.indexOf(item.to) > -1
+    );
+
     return this.menu.map(item => {
       return (
         <VerticalNav.Item
           key={item.to}
           title={item.title}
           iconClass={item.iconClass}
-          active={item === activeItem || (!activeItem && item.redirect)}
+          active={item === activeItem}
           onClick={() => this.navigateTo(item.to)}
-        />
+        >
+          {item.subItems &&
+            item.subItems.map(secondaryItem => {
+              return (
+                <VerticalNav.SecondaryItem
+                  key={secondaryItem.to}
+                  title={secondaryItem.title}
+                  iconClass={secondaryItem.iconClass}
+                  active={secondaryItem.to === location.pathname}
+                  onClick={() => this.navigateTo(secondaryItem.to)}
+                />
+              );
+            })}
+        </VerticalNav.Item>
       );
     });
   };
 
   render() {
     return (
-      <div className="layout-pf layout-pf-fixed">
+      <div
+        className={'layout-pf layout-pf-fixed'}
+        style={{
+          height: '100vh',
+          paddingTop: 60,
+          transform: 'translateZ(0px)'
+        }}
+      >
         <VerticalNav persistentSecondary={false}>
-          <VerticalNav.Masthead>
-            <VerticalNav.Brand />
-            />
-          </VerticalNav.Masthead>
+          <VerticalNav.Masthead title="PatternFly React Demo App" />
           {this.renderMenuItems()}
         </VerticalNav>
-        <div className="container-pf-nav-pf-vertical">{this.renderContent()}</div>
+        {/* default route to /ipsum */}
+        <Redirect from="/" to="/ipsum" />
+        {this.renderContent()}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ loginReducer }) => {
-  return {
-    credentials: loginReducer
-  };
-};
-
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(App);
