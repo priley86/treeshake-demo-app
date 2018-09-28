@@ -7096,30 +7096,32 @@ patternfly-bootstrap-treeview@~2.1.0:
     bootstrap "3.3.x"
     jquery ">= 2.1.x"
 
-patternfly-react@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/patternfly-react/-/patternfly-react-2.7.0.tgz#27527683621a2066c9ca2c4581f160fab3735ee8"
+patternfly-react@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/patternfly-react/-/patternfly-react-2.19.0.tgz#4efd6fd9bc9178a3fb95cd35334a89bd03154dfd"
   dependencies:
     bootstrap-slider-without-jquery "^10.0.0"
     breakjs "^1.0.0"
     classnames "^2.2.5"
     css-element-queries "^1.0.1"
-    patternfly "^3.48.0"
+    patternfly "^3.52.4"
     react-bootstrap "^0.32.1"
     react-bootstrap-switch "^15.5.3"
     react-bootstrap-typeahead "^3.1.3"
     react-c3js "^0.1.20"
     react-click-outside "^3.0.1"
+    react-collapse "^4.0.3"
     react-fontawesome "^1.6.1"
+    react-motion "^0.5.2"
     reactabular-table "^8.14.0"
     recompose "^0.26.0"
   optionalDependencies:
     sortabular "^1.5.1"
     table-resolver "^3.2.0"
 
-patternfly@^3.48.0:
-  version "3.50.0"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.50.0.tgz#e3b95de12e0668cefacbaa689c5b44c2ff949eae"
+patternfly@^3.52.4:
+  version "3.54.8"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.54.8.tgz#fd6c69714dc460575d2534c9f29017a58b442a83"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
@@ -7685,7 +7687,7 @@ querystringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.0.0.tgz#fa3ed6e68eb15159457c89b37bc6472833195755"
 
-raf@3.4.0:
+raf@3.4.0, raf@^3.1.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
@@ -7782,6 +7784,12 @@ react-click-outside@^3.0.1:
   dependencies:
     hoist-non-react-statics "^2.1.1"
 
+react-collapse@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-4.0.3.tgz#b96de959ed0092a43534630b599a4753dd76d543"
+  dependencies:
+    prop-types "^15.5.8"
+
 "react-dev-utils@file:react-dev-utils":
   version "5.0.0"
   dependencies:
@@ -7830,6 +7838,14 @@ react-fontawesome@^1.6.1:
 react-is@^16.3.2:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
+
+react-motion@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-motion/-/react-motion-0.5.2.tgz#0dd3a69e411316567927917c6626551ba0607316"
+  dependencies:
+    performance-now "^0.2.0"
+    prop-types "^15.5.8"
+    raf "^3.1.0"
 
 react-onclickoutside@^6.1.1:
   version "6.7.1"
